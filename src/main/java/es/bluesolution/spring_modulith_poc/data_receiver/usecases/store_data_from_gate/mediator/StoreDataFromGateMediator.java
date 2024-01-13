@@ -16,7 +16,7 @@ public class StoreDataFromGateMediator {
   private final GateSummaryReportRepository gateSummaryReportRepository;
 
   public StoreDataFromGateMediator(
-      @Qualifier("springDataRepository") GateSummaryReportRepository gateSummaryReportRepository) {
+      @Qualifier("influxRepository") GateSummaryReportRepository gateSummaryReportRepository) {
     this.gateSummaryReportRepository = gateSummaryReportRepository;
   }
 

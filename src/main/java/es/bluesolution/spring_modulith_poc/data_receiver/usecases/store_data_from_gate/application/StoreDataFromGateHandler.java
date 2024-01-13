@@ -20,7 +20,7 @@ public class StoreDataFromGateHandler implements Handler<GateSummaryReport> {
 
   private final GateSummaryReportRepository gateSummaryReportRepository;
 
-  public StoreDataFromGateHandler(@Qualifier("springDataRepository") GateSummaryReportRepository gateSummaryReportRepository) {
+  public StoreDataFromGateHandler(@Qualifier("influxRepository") GateSummaryReportRepository gateSummaryReportRepository) {
     this.gateSummaryReportRepository = gateSummaryReportRepository;
   }
 

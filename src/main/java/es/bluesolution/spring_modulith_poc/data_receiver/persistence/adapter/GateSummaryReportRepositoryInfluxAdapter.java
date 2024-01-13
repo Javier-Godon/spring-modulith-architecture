@@ -12,14 +12,14 @@ import reactor.core.publisher.Mono;
 @Repository("influxRepository")
 public class GateSummaryReportRepositoryInfluxAdapter implements GateSummaryReportRepository {
 
-  @Value("${spring.r2dbc.url}")
+  @Value("${questdb.influx.url}")
   private String questdbAddress;
 
   @Override
   public Mono<GateSummaryReport> save(GateSummaryReport report) {
     GateSummaryReportEntity entity = GateSummaryReportEntity.of(report);
     try (Sender sender = Sender.builder()
-        .address("192.168.13.69:30309")
+        .address(questdbAddress)
         .build()) {
       sender.table("gate_summary_report")
           .stringColumn("gate_id", entity.getGateId().toString())
@@ -27,8 +27,7 @@ public class GateSummaryReportRepositoryInfluxAdapter implements GateSummaryRepo
           .longColumn("end_time", entity.getEndTime())
           .stringColumn("result", entity.getResult())
           .stringColumn("user_data", entity.getUserData())
-          .at(System.nanoTime(), ChronoUnit.NANOS);
-      sender.flush();
+          .at(System.nanoTime() * 1000, ChronoUnit.NANOS);
     }
     return Mono.empty();
   }

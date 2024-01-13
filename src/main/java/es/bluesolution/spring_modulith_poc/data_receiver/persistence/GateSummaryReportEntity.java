@@ -49,7 +49,7 @@ public class GateSummaryReportEntity implements Persistable<Long> {
     this.endTime = endTime;
     this.result = result;
     this.userData = userData;
-    this.ts = zdt.toInstant().toEpochMilli() * 1000;
+    this.ts = zdt.toInstant().toEpochMilli() * 1_000_000;
   }
 
   public static GateSummaryReportEntity of(GateSummaryReport gateSummaryReport) {
