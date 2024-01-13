@@ -1,0 +1,27 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: analytics
+  r2dbc:
+    url: r2dbc:postgresql://192.168.13.69:30309/qdb
+    username: admin
+    password: quest
+questdb:
+  influx:
+    url: blue-ci-cd.com:30615
+
+logging:
+  level:
+    ROOT: INFO
+    es.bluesolution.spring_modulith_poc: INFO
+
+
+springdoc:
+  api-docs:
+    path: /analytics/api-docs
+  swagger-ui:
+    path: /analytics/swagger/api-docs-ui
+
+
